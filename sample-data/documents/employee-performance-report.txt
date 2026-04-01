@@ -1,0 +1,32 @@
+Employee Performance Review Report
+
+Employee Name: Priya Sharma
+Employee ID: EMP-2026-114
+Department: Operations Analytics
+Designation: Senior Executive
+Review Period: April 2025 - March 2026
+Reporting Manager: Rahul Mehta
+
+Performance Summary:
+Priya consistently delivered high-quality operational dashboards, improved internal reporting speed, and coordinated cross-functional issue resolution effectively.
+
+Key Achievements:
+- Reduced weekly reporting turnaround time by 38 percent.
+- Built automated KPI tracker used by finance and HR teams.
+- Improved documentation quality for escalation workflows.
+- Trained 3 new team members on reporting standards.
+
+Manager Feedback:
+Priya demonstrates strong ownership, dependable communication, and a practical problem-solving mindset. She is ready for greater responsibility in process improvement initiatives.
+
+Ratings:
+- Quality of Work: 4.7 / 5
+- Communication: 4.5 / 5
+- Ownership: 4.8 / 5
+- Team Collaboration: 4.6 / 5
+- Overall Rating: 4.7 / 5
+
+Recommendations:
+Consider Priya for lead responsibilities in workflow automation and monthly business review preparation.
+
+Final Status: Promotion Recommended

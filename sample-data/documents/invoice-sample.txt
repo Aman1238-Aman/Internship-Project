@@ -1,0 +1,7 @@
+Invoice Number: INV-2026-104
+Vendor: Nova Office Supplies
+Amount Due: INR 48,500
+Due Date: 18 April 2026
+
+This invoice covers workstation upgrades, ergonomic chairs, and storage accessories for the design team.
+Please review line items, payment status, and delivery confirmation before approval.

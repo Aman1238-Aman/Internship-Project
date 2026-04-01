@@ -1,0 +1,16 @@
+{
+  "id": "sample-document-id",
+  "title": "Invoice Sample",
+  "category": "Finance",
+  "summary": "This invoice covers workstation upgrades, ergonomic chairs, and storage accessories for the design team.",
+  "keywords": [
+    "invoice",
+    "payment",
+    "workstation",
+    "chairs"
+  ],
+  "review_notes": "Validated amount and due date.",
+  "status": "finalized",
+  "original_name": "invoice-sample.txt",
+  "created_at": "2026-03-31T18:30:00+05:30"
+}

@@ -1,0 +1,62 @@
+:root {
+  --bg: #08111f;
+  --bg-soft: #10203a;
+  --panel: rgba(9, 22, 41, 0.72);
+  --panel-strong: rgba(10, 28, 51, 0.9);
+  --line: rgba(153, 182, 255, 0.15);
+  --text: #eff6ff;
+  --muted: #adc0de;
+  --accent: #61e7c0;
+  --accent-strong: #21c7c2;
+  --secondary: #ff9d6c;
+  --danger: #ff6d7f;
+  --warning: #ffd36b;
+  --shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(97, 231, 192, 0.17), transparent 28%),
+    radial-gradient(circle at top right, rgba(255, 157, 108, 0.18), transparent 24%),
+    linear-gradient(160deg, #07101c 0%, #0c1730 54%, #091626 100%);
+  color: var(--text);
+  font-family: var(--font-body), sans-serif;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 36px 36px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), transparent);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}

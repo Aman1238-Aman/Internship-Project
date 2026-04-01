@@ -1,0 +1,12 @@
+Candidate Name: Aisha Verma
+Role: Product Analyst
+
+Summary:
+Analytical professional with 3 years of experience in dashboards, stakeholder reporting, SQL, and data storytelling.
+
+Experience:
+- Built reporting pipelines for operations and finance teams.
+- Improved weekly KPI turnaround from 2 days to 4 hours.
+
+Education:
+B.Tech in Information Technology

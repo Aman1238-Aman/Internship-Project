@@ -1,0 +1,2 @@
+id,title,category,summary,keywords,review_notes,status,original_name,created_at
+sample-document-id,Invoice Sample,Finance,This invoice covers workstation upgrades and ergonomic chairs.,"invoice, payment, workstation, chairs",Validated amount and due date.,finalized,invoice-sample.txt,2026-03-31T18:30:00+05:30

@@ -133,6 +133,21 @@ npm run dev
 
 Environment values can be copied from [backend/.env.example](/C:/Users/Lenovo/OneDrive/Desktop/cursor%20new/Documents/Playground/backend/.env.example).
 
+## Render deployment notes
+
+If frontend and backend are deployed as separate Render services, set these values:
+
+Frontend service environment:
+
+- `NEXT_PUBLIC_API_BASE_URL=https://<your-backend-service>.onrender.com/api`
+
+Backend service environment:
+
+- `FRONTEND_ORIGIN=https://<your-frontend-service>.onrender.com`
+- `FRONTEND_ORIGINS=https://<your-frontend-service>.onrender.com,http://localhost:3000,http://127.0.0.1:3000`
+
+If frontend and backend are served from the same domain behind a reverse proxy, the frontend will now default to `/<api>` on the current origin when `NEXT_PUBLIC_API_BASE_URL` is not set.
+
 ## Assumptions
 
 - File storage is local disk for assignment simplicity.

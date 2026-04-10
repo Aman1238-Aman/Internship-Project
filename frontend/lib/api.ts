@@ -1,6 +1,21 @@
 import { DocumentListResponse, DocumentRecord, DocumentStatus } from "@/lib/types";
 
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:8000/api";
+function resolveApiBase() {
+  const configured = process.env.NEXT_PUBLIC_API_BASE_URL?.trim();
+  if (configured) {
+    return configured.replace(/\/$/, "");
+  }
+
+  if (typeof window !== "undefined") {
+    const { origin, hostname } = window.location;
+    if (hostname === "localhost" || hostname === "127.0.0.1") {
+      return "http://localhost:8000/api";
+    }
+    return `${origin}/api`;
+  }
+
+  return "http://localhost:8000/api";
+}
 
 async function parseResponse<T>(response: Response): Promise<T> {
   if (!response.ok) {
@@ -16,7 +31,7 @@ async function safeFetch(input: RequestInfo | URL, init?: RequestInit): Promise<
   } catch (error) {
     if (error instanceof TypeError) {
       throw new Error(
-        "Backend unreachable. Please start Docker Desktop and run `docker compose up --build`, then refresh localhost:3000."
+        "Backend unreachable. For local run start Docker or backend server. For Render deploy set NEXT_PUBLIC_API_BASE_URL to your backend service URL ending with /api."
       );
     }
     throw error;
@@ -33,14 +48,16 @@ export async function fetchDocuments(filters: {
   if (filters.status && filters.status !== "all") params.set("status", filters.status);
   if (filters.sort) params.set("sort", filters.sort);
 
-  const response = await safeFetch(`${API_BASE}/documents?${params.toString()}`, {
+  const apiBase = resolveApiBase();
+  const response = await safeFetch(`${apiBase}/documents?${params.toString()}`, {
     cache: "no-store"
   });
   return parseResponse<DocumentListResponse>(response);
 }
 
 export async function fetchDocument(id: string): Promise<DocumentRecord> {
-  const response = await safeFetch(`${API_BASE}/documents/${id}`, { cache: "no-store" });
+  const apiBase = resolveApiBase();
+  const response = await safeFetch(`${apiBase}/documents/${id}`, { cache: "no-store" });
   return parseResponse<DocumentRecord>(response);
 }
 
@@ -48,7 +65,8 @@ export async function uploadDocuments(files: File[]): Promise<DocumentRecord[]> 
   const formData = new FormData();
   files.forEach((file) => formData.append("files", file));
 
-  const response = await safeFetch(`${API_BASE}/documents`, {
+  const apiBase = resolveApiBase();
+  const response = await safeFetch(`${apiBase}/documents`, {
     method: "POST",
     body: formData
   });
@@ -56,7 +74,8 @@ export async function uploadDocuments(files: File[]): Promise<DocumentRecord[]> 
 }
 
 export async function updateReview(id: string, payload: Partial<DocumentRecord>): Promise<DocumentRecord> {
-  const response = await safeFetch(`${API_BASE}/documents/${id}/review`, {
+  const apiBase = resolveApiBase();
+  const response = await safeFetch(`${apiBase}/documents/${id}/review`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json"
@@ -73,7 +92,8 @@ export async function updateReview(id: string, payload: Partial<DocumentRecord>)
 }
 
 export async function finalizeDocument(id: string, approverName: string, finalNotes: string): Promise<DocumentRecord> {
-  const response = await safeFetch(`${API_BASE}/documents/${id}/finalize`, {
+  const apiBase = resolveApiBase();
+  const response = await safeFetch(`${apiBase}/documents/${id}/finalize`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -87,7 +107,8 @@ export async function finalizeDocument(id: string, approverName: string, finalNo
 }
 
 export async function retryDocument(id: string): Promise<void> {
-  const response = await safeFetch(`${API_BASE}/documents/${id}/retry`, {
+  const apiBase = resolveApiBase();
+  const response = await safeFetch(`${apiBase}/documents/${id}/retry`, {
     method: "POST"
   });
   if (!response.ok) {
@@ -96,9 +117,9 @@ export async function retryDocument(id: string): Promise<void> {
 }
 
 export function exportUrl(id: string, format: "json" | "csv") {
-  return `${API_BASE}/documents/${id}/export?format=${format}`;
+  return `${resolveApiBase()}/documents/${id}/export?format=${format}`;
 }
 
 export function eventsUrl(id: string) {
-  return `${API_BASE}/documents/${id}/events`;
+  return `${resolveApiBase()}/documents/${id}/events`;
 }

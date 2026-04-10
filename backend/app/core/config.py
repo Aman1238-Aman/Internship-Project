@@ -12,6 +12,7 @@ class Settings(BaseSettings):
     celery_result_backend: str = "redis://localhost:6379/1"
     redis_url: str = "redis://localhost:6379/2"
     frontend_origin: str = "http://localhost:3000"
+    frontend_origins: str = "http://localhost:3000,http://127.0.0.1:3000"
     upload_dir: Path = Path("storage/uploads")
     export_dir: Path = Path("storage/exports")
 
@@ -24,3 +25,11 @@ def get_settings() -> Settings:
     settings.upload_dir.mkdir(parents=True, exist_ok=True)
     settings.export_dir.mkdir(parents=True, exist_ok=True)
     return settings
+
+
+def get_allowed_origins() -> list[str]:
+    settings = get_settings()
+    origins = [item.strip() for item in settings.frontend_origins.split(",") if item.strip()]
+    if settings.frontend_origin and settings.frontend_origin not in origins:
+        origins.append(settings.frontend_origin)
+    return origins
